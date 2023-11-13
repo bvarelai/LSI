@@ -2,7 +2,7 @@
 
 ### Practica 1
 
-- [P1](https://github.com/bvarelai/LSI/tree/main/P1) -  _Note = 2.75/4 
+- [P1](https://github.com/bvarelai/LSI/tree/main/P1) -  _Note = 2.75/4_ 
 
 ### Practica 2
 
