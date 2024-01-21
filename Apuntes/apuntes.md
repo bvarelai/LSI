@@ -66,6 +66,7 @@ Aprovechan una vulnerabilidad para conseguir algo a cambio.
 - **Google** : (5% de internet)
 - **Deepweb** : Trozo de internet que no esta indexado 
 - **Darkweb** : Donde se venda drogas,armas,familias (1% de internet)
+- **Datango** : navegador que no te tracea (es a parte)
 
 ### Diferencia entre Modelo TCO/IP y TCP/IP
 #### Modelo TCO/IP  
@@ -263,6 +264,10 @@ Ejemplo : **modsecurity**, **cloudfare**,**infogure**
   ya que es de capa 2 y no se puede hacer routing para llegar a el.  
   mtables(montar firewall en capa 2, lo opuesto a iptables) www.nslap.com  
 - **Firewalls de nueva generacion** : Desde capa 2 a 7(los mas potentes)
+#### Como saltarse un Firewall (con control de estado y sin el)
+- **#ssh X.X.X.Casa -p 443 -l user -L 2128:X.X.X.JUEGO:Puerto** : **CASA** es un servidor ssh con su fichero de configuracion(/etc/sshd.conf poner port: 443)   
+El primer 2128 es el puerto de mi maquina con el que hago LOCALHOST y el segundo es el puerto de JUEGO. JUEGO es la maquina a la que quiero acceder.   
+Si hacemos un http//:LOCALHOST:3128 Para ir desde mi maquina CASA voy desde un puerto al 443   
 ### Más cosas a mayores
 - **Information gallery** : MALTEGO, NETGLUB
 - **Metadatos** : CREEPY(recolecta fotos y geolocaliza el lugar donde se han hecho a traves de metadatos)
@@ -424,5 +429,103 @@ ya que ese nodo conoce mas informacion.
 - **Whonis** :                                    
 - **Encadenar proxys** : **http://proxy.puerto/http://proxy2.puerto/http://**
   Descargar en tor proyect tor browser(mas seguro)
+- **FORWARDING DINAMICO** : **ssh -p 443 -fN -D 0.0.0:1080 user@X.X.X.CASA**
+### Herramienta corkscrew(junto con el forwardeo de puertos con ssh) 
+- Te permite saltarse proxys a nivel HTTP
+### PORT KNOCKING 
+- Parar servicios y levantarlo cuando me hace falta. Lo levanto o tiro enviandolo ACKs o SYNCs (paquetes) que se filtran por el firewall de mi maquina.
+- **/etc/knockd.conf** 
+  **[OpenSSH]**  
+  **sequence**= 7000,7015,9001  
+  **seq_timeout**= 10  
+  **tagflags**= 54N  
+  **COMMAND** = iptables -A INPUT -s %[% -g ACCEPT:_  ---> systemctl start ssh                      
+### WEB KNOCKING 
+- Lo mismo pero contra **servidores web**( se envian peticiones http en vez de **SYNCs**) 
+## Tema 1.5:  Interceptación
+### LAN SWITCH SECURITY WHAT HACKERS KNOW ABOUT YOUR SWITCH SECURITY LAYER 2 CISCO PRESS
+Libro que trata sobre los ataques a capa 2. Los ataques a esta capa son devastadores  
+La capa 2 se tiene en cuenta menos que las capas 3->7.  
+### SNIFFING 
+Puedo sniffar trafico seguro o no seguro(**FTP**,**HTTP**). Si es trafico **HTTPS** es trafico cifrado al hacer una **autenticacion BASIC** es mas seguro hacerlo por HTTPS 
+para proteger mi password. Tambien sirve para analizar redes.
+### SUBNETTING
+- **Rendimiento** : Usar Redes switcheadas
+- **Ahorro de IPs** : VLANs en donde los enlaces entre "los routers" son trunk ports ---> Protocolo 802.11Q o DTP
+- **YERSINIA** : permite hacer ataques en capa 2 (a los protocolos).Tambien ataca STP,DTP,802.1q      
+### REDES SWITCHEADAS 
+- Cada maquina tiene su ancho de banda propio. No son redes de ancho compartido(como eran las redes de antes, donde las maquinas compartian ancho de banda)
+### SWITCH SPOOFING  
+- Realizar ataques a **802.11Q** para obtener informacion.  
+  **Solucion**: Truckear las tramas
+### DOUBLE TAGGING 
+- Meter doble etiquetado a las maquinas. Cuando llega al commutador de una maquina se quita el primer etiquetado
+### STP 
+-**Evita los bucles** : para que los switches se comuniquen se utilizan BPDU (donde se convierte la red en forma de grafo en un arbol sin bucles)
+Con **YERSINIA** puedes enviar un BPDU a la red para decir que tu eres el "bridge route". Esto es una manera de atacar
+- **ROOT BRIDGE GUARD** ---> puedo filtrar donde puedes aparecer o no apareceer los root bridges
+- **BPDU GUARD** --> filtrar los puertos por donde no debe hablar BPDUS
+- **yersinia - G** : modo grafico
+### ARP SPOOFING 
+- Engaño a una serie de maquinas(protocolo ARP) haciendoles creer que tengo otra MAC
+### ICMP REDIRECTS 
+- Envias un icmp y la maquina a la que se lo envias te usa como router
+#### Comandos
+- **ettercap -M icmp:MAC /IP// /IP//**
+- **/proc/sys/net/ipv4/conf/all/accept_redirect** : Si esto esta a 1 es que acepto estos ICMP
+- **/send_redirect** : si esta a 1 es que puedo enivar **ICMP**     
+- **/service_redirect**    
+ - **Mejor opcion** : Modificar el /etc/sysctl.conf (net.ipv4.conf.all.accept_redirect = 0) 
+### DHCP SPOOFING  
+#### Comandos
+- ettercap -Tq -M dhcp:10.11.48.10-25,31/255.255.255.0  //  DNS  / IP //
+### DHCP SNOFFING 
+- Hace que solo se acepten paquetes dhcp en un determinado puerto(el que yo digo). Si se hace desde otro puerto este se tira  
+- Para evitar estos ataques se desactiva el dhcp en las maquinas                  
+### PORT STEALING 
+- Tengo mi commutador funcionando. Envio a un puerto un monton de paquetes con MAC origen otra maquina(que tiene otro puerto).De esta manera   
+EL commutador recibe esos paquetes y le robo el puerto a esa maquina.  
+Despues se lo devuelvo	(AL ROBAR MAC DE LA OTRA MAQUINA OBTENGO SU PUERTO)                   
+**ettercap -M remote_tree /IP//**                 
+-Con **IPV6** hay que usar ndp(no hay ARP ni BROADCAST)   
+### DNS SPOOFING 
+- Falsear las resoluciones de los servidores DNS(Usar una IP falsa para fingir ser un servidor)
+- **/etc/ettercap/etter.conf**  
+ett_conf=0   
+ett_uid=0    
+- **/etc/ettercap/etter.dns**  
+www.google.es A 10.11.48.75  
+- **ettercap -Tq -i ens33 -P dns_spoof -P repoison_arp -P repoison_arp -P sslste -P sslstrip -M arp // -M 10.11.48.VICTIMA  ///**
+### DNSSec 
+- Más seguro. Te da auntenticacion e integridad pero no cifrado. Eso se consigue usando un sistema llamado "DNS KEY", teniendo un par de claves                                                                              publica/privada y se usan hashes 
+- **DoT** : (**DNS or TLS**)Poner esto a mayores para hacer el DNSSec mas seguro. Con TLS conseguimos cifrado del DNSSec.                                          
+### EVILGRADE 
+- Moficar la paqueteria de las actualizaciones 
+### Comandos ARP Cache
+- **arp -a**
+- **arp -b IP** : borrar la IP
+- **arp -s IP MAC** : hacer una asociacion fija(para borrarla hay que hacer arp -d)
+- **arptables -A input --sourcemac=MAC -j DROP** (todo lo que venga de esta MAC lo droppeo)
+- **ip link set d ens33 arp off**
+- **ip neigh flush all** : me borra la tabla arp
+- **/proc/sys/net/ipv4/neigh/ens33/gc_state_tmp**  
+- **/gc_state_time** : frecuencia de checkeo de la CACHE   
+- **/gc**
+### SNORT
+- Sistema de prevencion de inclusion 
+- **nast -e** : Barrido de IP MAC, si una IP cambia de MAC te avisa
+- **ettercap** (PLUGGING) : -P rand_flood : petar el commutador de la maquina  
+Como me protejo : UNICAST FLODDING PROTECTION : revisa la velocidad de flujo de paquetes   
+          
+### PORT SECURITY 
+- Definir restricciones de MACs
+- **int drop 0/2** : Se me bloquea un puerto y se droppea la paqueteria 
+- **switchport port-security mac 4** : Solo me acepta 4 MAC 
+- **switchport port-securoity violation protect/restring**                  
 
-     
+### PORT SPAN / MIRRORING
+- Si hago un span / mirroring de varios puertos sobre otro puerto(B) todo el trafico de esos puertos se hace "mirroring" a ese puerto(B),  
+donde podemos conectar una maquina. Para evitar "cuello de botella" de esta maquina podemos poner un trunk port  
+El trunk port tiene otros nombres como: PORT AGGREGATION, LAG , PORT CHANNEL.
+
+       
