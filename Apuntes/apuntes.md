@@ -306,7 +306,7 @@ coincide con la que esta alamcenada en shadow te deja entrar.
 Permite aumentar/reducir las particiones de la máquina(buscando espacio de otra partición)  
 - echo 1 > /etc/sys/kernel/modules-disabled  
 - /etc/modprofile.d/blacklist.conf : Te mira reducir las sesiones, el numero de intentos de contraseñas  
-## Tema 1.3:  Ocultación
+## Tema 1.3:  Ocultación 
 ### NAT
 Usando **NAT** no hay ocultación    
 Si yo accedo a un servidor web a traves de **NAT**, ese servidor con sripting puede conocer mi ip. Por ello Hay que trabajar la ocultacion en todos los niveles de la **capa OSI**.  
@@ -332,7 +332,7 @@ X_FORWARDED_FORI : IP,IP
 - direct 127.0.0.1 255.255.255.255
 - direct 10.11.48.0 255.255.254.0 
 - sockd @:x.x.x.x  0.0.0.0  0.0.0.0 
-## Tema 1.4:  Sniffing
+## Tema 1.4:  Sniffing y más
 ### AIRMON
 - **airmon -ng** : Tarjeta WI-FI "modo monitor" -- esnifas todo el trafico en el aire(que es el medio del WI-FI)   
 - **airondump -ng** : Captura trafico  
@@ -346,8 +346,7 @@ X_FORWARDED_FORI : IP,IP
 - **aircrack -ng -w disc captura** : Le crackeo(me calcula PNK`s)  
 ### PROCESO DE CRACKEO CON WPA2 A UNA WIFI PTK: PNK ANNOUNCE SNOUNS MAC(PUNTO DE ACCCESO) MAC (DE LA ESTACION)
 El PNK de la clave de acceso(password)
-Si todo lo que metes del PTK coincide con ese NICK del password -> YA ESTARIA
-
+Si todo lo que metes del PTK coincide con ese NICK del password -> YA ESTARIA  
 - **WPS** : Se usaba hace años. Estandard en el que habia un indentificador(QR) para conectarse mas facil a la WIFI  
 El identificador tenia 7 digitos decimales. Cuando se programo el WPS se hizo 10^4 + 10^3 en vez de 10^7,  
 Por lo que disminuyo el numero de convinaciones posibles(la gente robaba el WI-FI)  
@@ -370,6 +369,60 @@ Por lo que disminuyo el numero de convinaciones posibles(la gente robaba el WI-F
 - **hashat**
 - **Herramienta** : hash_identifice (le das un hash y te dice la funcion con la que fue hasheada) y el hash_id          
 - **findmyhash** : te busca en una BD si ese hash ha sido roto o no  
+### PASSWORD GUESSING
+- Van contra los servicios imperativos de autenticacion(ssh). Son lentos, por lo que se dejan un tiempo ahi para pillar password.  
+  Dejan registros en los logs.
+- **Filtros** : por **IP**, por usuario (Ataques de denegacion de servicio).  
+  Puedo poner el retardo (n-1) segundos.  
+#### Comandos
+-  **Medusa, n-crack, hydra**
+-  **medusa -b** : todos los modulos que contempla medusa para atacar
+-  **medusa -m ssh -q** : las opciones para ssh
+-  **medusa -h 10.11.48.X -u lsi -P p.txt -M ssh -f -U fichero.txt**  
+#### Solución a este tipo de ataques
+- Denegar el **ssh** o filtrar a nivel de **Wrappers** y firewalls(puedo meter reglas hash-limit,para limitar los intentos).    
+**Fail2ban**, **OSSEC**(ES UN **HIPS**, detecta y evita ataques **PASSWORD GUESSING**), **HIPS(Host Intrusion Prevention System)**
+- **CAPTACHAS** : Evitar ataques de PASSWORD GUESSING (Ej: selecciona los fotos donde sale un semaforo)
+- **wget -v -k http://www...** : Usar spidering para descargar el index.html
+- **wget -v -k -H http://www...**: Usar spidering
+### COMO PROTEGER EL GRUB
+- grub.mkpasswd-pbkdf2 : Esto te genera un hash(que esta dentro)  
+- /etc/grubd/40_custom   
+ set superuser=root  
+ passwd-pbkdf2 root [hash]
+- update-grub --> actualizar el grub   
+### REBALLING 
+- Tema de graficas
+### REFLOW
+### 2017 KRACK ATTACK 
+- Ataque dificil de implementar(puento de acceso falso).De manera que el punto de acceso falso esta en el medio  
+  y tras la 4º conexion tiran y obligan a reinstalar la clave.  
+### 2018 WPA3      
+### De WPA2 a WPA3
+- Longitud de clave : 128 --> 192  
+- EL crackeo de **WPA2** a un wifi en **WPA3** no funciona( y el KRACK ATTACK tampoco)
+#### Solución
+- **#dd if=/dev/userdom  f=/dev/sdb** --> cambia de manera aletatoria estos fucheros
+- **#sfill**  : me borra de forma segura en espacio libre
+- **#sswap** : me borra de forma segura la parte swap de mi disco duro 
+- **#smem** : me hace borrado seguro de la RAM de mi sistema
+- **#history** : registros de los comandos que has puesto en la maquina  
+DNS LEAKS
 
+### REDES DE ANONIMATO Y PRIVACIDAD 
+#### TOR 
+- Red en la que para acceder de una maquina a otra hay por el medio nodos(de entrada,salida e intermedios)
+- Directorios: donde estan los **"nodos tor"** en cuestion. Esto(el **tor**) te monta un **ONION PROXY**, que adapta la paqueteria a la forma de la red.    
+Este proxy cifra la info tantas veces como nodos haya hasta el destino. De manera que el unico nodo que conoce el origen es el nodo de entrada.  
+Una vez que llega al destino se quita cada capa. El ultimo de ida y el primero de vuelta se cifran con **HTTPS** para evitar **sniffing** y **envenenamientos**,  
+ya que ese nodo conoce mas informacion.
+- **Servicios ocultos** : donde podemos utilizar la propia red tor para meterlos(servidor web por ejemplo). **http:// ```````.onion**
+- **Problemas de Rendimiento(congestion)** : poco ancho de banda y  mucha latencia. En la ultima version aumentaron los buffers de lo nodos como solucion.
+- Algoritmos : **TOR VEGAS** 
+- **ATM : Asinconus Trasmision Mode** : Tecnologia de multiconexion de manera que aumentamos el ancho de banda y bajamos la latencia. Podria ser una solucion a las redes TOR                               
+- **FAILs** : te da maquinas virtuales 
+- **Whonis** :                                    
+- **Encadenar proxys** : **http://proxy.puerto/http://proxy2.puerto/http://**
+  Descargar en tor proyect tor browser(mas seguro)
 
-
+     
