@@ -175,8 +175,16 @@ fw con control de estado esta se caeria al seguir control del estado de las cone
 En internet hay mas fw sin control de estado que con control de estado 
 
 - **hping3 -c 1 -s -p 22 [IP]** : Si delvuelve ACK(se inicia la charla) si es reset(esta apagado)
-- **nmap -sS -p 22,80,443,512...** : Saber si los puertos estan cerrados(escaneo de puertos)... 
-- **nmap -sA-p 22,80,443,512...**  : Escaneo de puertos con ACK  
+- **nmap -sS -p 22,80,443,512...** : Saber si los puertos estan cerrados(escaneo de puertos)... **(TCP SYN Scan)**
+- **nmap -sA-p 22,80,443,512...**  : Escaneo de puertos con ACK **(TCP ACK Scan)**
+- **nmap -sT** : Escaneo por defecto que se hace cuando no se puede realizar el SYN Scan **(TCP Connect Scan)**
+- **nmap -sU** : Escaneo por UDP **(UDP Scan)**
+- **nmap -sI** :  **(TCP Idle Scan)** : Manera sigilosa de saber si un puerto de otra maquina esta abierto, cerrado o filtrado.
+- **nmap -sF** : Se fija el flag FIN
+- **nmap -sN** : No se fija ningun Flag
+- **nmap -sX** : Se fijan los flags FIN,PSH y URG  
+Estos tres ultimos tienen que averiguar si un puerto esta cerrado y atravesar FW que no hagan inspección de estado o routers que hagan  
+filtrado de paquetes.  
 
 Se envio un ACK Y RECIBO UN RESET SE QUE EN EL MEDIO NO HAY UN FIREWALL DE CONTROL DE ESTADO
 pero si no recibo nada puede que si que haya un firewall o la maquina este apagada.
@@ -196,8 +204,9 @@ Hay casos donde recibes reset y puede ser que lo envie el firewall, por lo que s
   Hacer **port scanning** --> **fingerprinting** activo    
   buscar info ---> **fingerprinting** pasivo
 #### Comandos
-- nmap -O [IP] : que SO y version tiene la maquina(fingerprinting del SO)  
-- nmap -sP -sV 10.11.48.0/24 : (fingerprinting de servicios y puertos)      
+- **nmap -O [IP]** : que SO y version tiene la maquina(fingerprinting del SO y tambien los puertos)  
+- **nmap -sP -sV 10.11.48.0/24** : (fingerprinting de servicios y puertos)
+- **nmap -A** : te devuelve todo      
 ### FootPrinting 
 - Recolectar info de paginas web, redes sociales(info publica)
 ### Google Hacking/Dorks 
