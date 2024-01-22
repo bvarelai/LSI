@@ -144,7 +144,17 @@ Importante para evitar problemas
 ### Host Discovery
 - Descubrir un host(**servidores DNS**, **web** y **email** los mas faciles de encontrar. Si es en intranet es mas dificil)
 #### Comandos
-- nmap -sP 10.11.48.0/24 : Nos hace un hostdicovery(si nos responde es que hay maquina)
+- nmap **-sP** 10.11.48.0/24 : Nos hace un hostdicovery(si nos responde es que hay maquina). Envia paquetes TCP/ICMP
+- Con **-sL** : Lista todos los equipos de la red. No envía paquetes
+- Con **-PS [lista de puertos]** : ping TCP SYN
+- Con **-PA [lista de puertos]** : ping TCP ACK
+- Con **-PU [lista de puertos]** : ping UDP
+- Con **-PE** : Solicitud de echo
+- Con **-PP** : Consulta de marca de tiempo
+- Con **-PM** : Consulta de máscara de red
+- Con **-PN** (skip ping): Escaneo de las maquinas cuando falla en Host Discovery.
+- Con **-n** (No realizar resolución DNS inversa)
+- Con **-R** (Realizar resolución de nombres con todos los objetivos)
 ### Port Scanning
 - Escogi masquinas y **escaneo puertos** para saber cuales estan levantados y cuales no.
 #### Estado de los puertos
