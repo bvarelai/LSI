@@ -18,7 +18,7 @@
 - **NVD(National Vulnerable Database)** : Base de datos de vulnerabilidades.
 - **CVE(Common Vulnerability Exposure)** : Lista de vulnerabilidades de ciberseguridad conocidas publicamente.
 - **CWE (Common Weakness Exposure)**
-- **CVSS(Common Vulnerbility Store System)**
+- **CVSS(Common Vulnerability Score System)** : Sistema de puntuacion para clasificar las vulnerabilidades.
 - **CPE(Common Platform Emmeration)**
 - **OVAL OPEN (Vulnerability and assessment language)** : Aparece ya que **CVE**, 
   **CWE**, **CVSS** tenian problemas a la hora de establecer los campos.
