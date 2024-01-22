@@ -73,20 +73,20 @@ Aprovechan una vulnerabilidad para conseguir algo a cambio.
 - **Darkweb** : Donde se venda drogas,armas,familias (1% de internet)
 - **Datango** : navegador que no te tracea (es a parte)
 
-### Diferencia entre Modelo TCO/IP y TCP/IP
-#### Modelo TCO/IP  
-  4. APP  ---> 7,6,5
-  3. Transporte  ---> 4 
-  2. internet/red --> 3
-  1. acceso ---> 1,2
-#### Modelo TCP/IP
-  7. Aplicacion 
-  6. Presentacion
-  5. Sesison 
-  4. transporte 
-  3. red
-  2. enlace 
-  1. fisica
+### Diferencia entre Modelo TCP/IP y OSI
+#### Modelo TCP/IP  
+  **4** Aplicación  ---> 7,6,5  
+  **3** Transporte  ---> 4   
+  **2** Internet/red --> 3  
+  **1** Acceso ---> 1,2
+#### Modelo OSI
+  **7** Aplicacion   
+  **6** Presentacion  
+  **5** Sesión   
+  **4** Transporte   
+  **3** Red  
+  **2** Enlace   
+  **1** Fisica  
 
 - **Phisjing** : Aplicacion o sesion o presentacion
 - **Spoofing** : 2. a la 5. 
