@@ -35,6 +35,20 @@ Ejemplo : CVE-2013-3527
 ### Amenazas
 Se les reconoce por una sigla llamada **CWE**.  
 Ejemplo : CWE-89 nvd.mst gov/vdn
+#### Tipos
+- **Backdoor** : Puerta trasera que sirve de acceso a un compañero.
+- **Sniffer** : Captar trafico de la red.
+- **Malware/Virus** : Software maligno, que hace cosas que debe hacer pero otras a
+  mayores por detras (MDA SSA256)
+- **BOT** : Sistema o infraestructura que esta a servicio de un tercero.
+  Ordenadores, telefonos moviles, neveras, teles.  
+  Cualquier cosa que tenga connectividad.
+- **KeyLoggers** : Dispositivo que registra claves.
+- **Worm** : Gusano 
+- **Spyware** : Recopila informacion de tu PC y las transmite a otro sitio sin que te enteres
+- **Rootkits** : Le da al hacker la capacidad de meterse en tu movil y controlarlo
+- **Reverse Trojan** : roba datos privados bajo un comando hacker
+- **Trojan Horse** : Caballo de Troya, malware que se descarga en tu PC finjiemdo ser un programa legitimo
 ### Ataques
 Aprovechan una vulnerabilidad para conseguir algo a cambio.
 #### Tipos
@@ -53,15 +67,6 @@ Aprovechan una vulnerabilidad para conseguir algo a cambio.
 - **Dropper** : Virus + Gusano
 - **Propagacion**  : Gusano y Dropper
 - **Ocultacion** : Dropper y Troyano
-### Otros
-- **Backdoor** : Puerta trasera que sirve de acceso a un compañero.
-- **Sniffer** : Captar trafico de la red.
-- **Malware/Virus** : Software maligno, que hace cosas que debe hacer pero otras a
-  mayores por detras (MDA SSA256)
-- **BOT** : Sistema o infraestructura que esta a servicio de un tercero.
-  Ordenadores, telefonos moviles, neveras, teles.  
-  Cualquier cosa que tenga connectividad.
-- **KeyLoggers** : Dispositivo que registra claves.
 ### Lo que compone Internet
 - **Google** : (5% de internet)
 - **Deepweb** : Trozo de internet que no esta indexado 
