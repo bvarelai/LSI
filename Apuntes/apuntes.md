@@ -21,7 +21,8 @@
 - **CVSS(Common Vulnerability Score System)** : Sistema de puntuacion para clasificar las vulnerabilidades.
 - **CPE(Common Platform Emmeration)**
 - **OVAL OPEN (Vulnerability and assessment language)** : Aparece ya que **CVE**, 
-  **CWE**, **CVSS** tenian problemas a la hora de establecer los campos.
+  **CWE**, **CVSS** tenian problemas a la hora de establecer los campos.  
+- **NDP** : Protocolo equivalente a ARP pero en IPv6.  
 ### Orden para cifrar un PDF
 - **PDF** -> **HASH** -> **Huella** -> **Cifrar** -> **Huella digital**
 ## Tema 1: Fundamentos y Categorias de ataques
