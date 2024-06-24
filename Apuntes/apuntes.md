@@ -303,7 +303,7 @@ Si hacemos un http//:LOCALHOST:3128 Para ir desde mi maquina CASA voy desde un p
                Herramienta: lynis audit system (te da consejos para mejorar la seguridad de tu maquina)    
                Libreria: lilpum-tmpdir    
 - **atp-listbugs** : Permite ver los bugs de los paquetes   
-- **apt install needstart** : Se usa cuando hay cambios de librerias  
+- **apt install needstart** : Se usa cuando hay cambios de librerias
 - **debsecan** : te da las vulnerabilidades no parcheadas de tu maquina    
 - **debsums -d** : Te dice las diferencias de cada paquete instalado  
 - **fail2ban** : ataques password-guessing los evita.   
@@ -553,4 +553,36 @@ Como me protejo : UNICAST FLODDING PROTECTION : revisa la velocidad de flujo de 
 donde podemos conectar una maquina. Para evitar "cuello de botella" de esta maquina podemos poner un trunk port  
 El trunk port tiene otros nombres como: PORT AGGREGATION, LAG , PORT CHANNEL.
 
-       
+### TRUNK PORTS
+- **MODE 0** : RR (Row Robin)
+- **MODE 1** : ACTIVE-BACKUP
+- **MODE 2** : BALANCE XOR -> **(MAC_ORIGEN XOR MAC_DESTINO) MOD Nº DE LA INTERFAZ**
+- **MODE 3** : MODO BROADCAST -> Envio de paquetes por todas la interfaces de red
+- **MODE 4** : 8025.3ad
+- **MODE 5** : BALANCEO DE CARGA DE TRANSMISION ADAPTABLE (balance-tlb) -> Envio el paquete por la interfaz donde haya menos carga
+
+Si vamos al interfaces:  
+```
+gateway ```` 
+sloves ens33 ens34 ens35
+bound_mode 0
+```
+#### Comandos relacionados
+- apt i6 infenslove
+- echi bounding >> /etc/modules
+- module bounding
+### TAP
+- Son dispositivos hardware que se instala entre el border router y los firewalls(de nueva generacion, que se montan de manera redudante, 1->2) de E/S de tu organizacion.
+Si lo apago, el flujo sigue pasando por el pero este deja de sniffar el trafico. Estos firewalls trabajan de capa 2 a capa 7.
+### FIREWALLS BUENOS
+Los de PALO ALTO (CISCO)
+### SIEM
+- Trabaja con logs y se alimenta de ellos, un ejemplo es Splunk. SOC esta vinculado al SIEM
+### APACHE HADOP
+- Framework orientado a la configuracion del software. Este utiliza **HSFS** (Sistemas de ficheros distribuidos). Con MAP REDUCE programas.
+### EDR 
+- Securiza maquinas finales. Trabaja con agentes y se alimenta de ellos. 
+- **NDR** : Se alimentan de los tags de red(trafico) 
+
+en ettercap -P sslstrip --> Solucion : HSTS HTTP STRIP TRANSFER SEC  
+
