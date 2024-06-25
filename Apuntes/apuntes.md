@@ -585,4 +585,277 @@ Los de PALO ALTO (CISCO)
 - **NDR** : Se alimentan de los tags de red(trafico) 
 
 en ettercap -P sslstrip --> Solucion : HSTS HTTP STRIP TRANSFER SEC  
+### BETTERCAP  
+- Es **MITMf** (Man In The Middle Framework)
+- Ejemplo : ngrep -d ens33 -x ``  
+### SIDEJACKING 
+- ROBO DE **COOKIE** AUTENTICATION. Ataques como **SNIFF**,**XSS**...
+- **COOKIES** : Se usan para autenticacion, trazeado, perfilado de configuraciones. Document.cookie (aqui se configura toda la info de la cookie) 
+### HTML5 
+- Aqui se implementa el WEB STORATION 
+- SESSION STORAGE : Solo dura durante la sesion  
+- LOCAL STORAGE : Esto perdura en el tiempo
+### SUPER COOKIES
+- Tecnología de cookies para retener y reproducir las cookies que han sido eliminadas o alteradas manualmente por un usuario.
+### ZOMBIE COOKIE
+- Fragmento de datos que normalmente que se utiliza para rastrear a los usuarios, que es creado por un servidor web mientras un usuario navega por un sitio web.
+### EVERCOOKIE 
+- Implementacion de cookies persistentes (Ejemplo HSTS, que asegura que el tráfico se realiza mediante un canal seguro)
+## Tema 1.6: INTERRUPCION (DENEGACION DE SERVICIO)
+### DDos 
+- **DENEGACION DE SERVICIO DISTRIBUIDA**
+- Ejemplo : **BOTNET**  
+- **Dos** : DENEGACION DE SERVICIO
+#### ATAQUES 
+-**LOGICOS** : Ataque que se hace a una determinada vulnerabilidad para tirar un servicio (SOLUCION : PARCHEAR)  
+-**INUNDACION** : Se te abren muchas conexiones, de manera que el servicio puede ir lento o caerse. En estos existe el factor amplicacion   
+es el numero de paquetes que le llega a la maquina que queremos atacar (1 a 1) (1 a N) los mas jodidos son los de inundación  
+-**DEBIDOS A UNA MALA CONFIGURACION** : (ejemplo: while time do fork()). **SOLUCION** -> Poner quotas(de tamaño de fichero)  
+-**DIRECTOS** : EJEMPLO (slowhttp)  
+-**REFLECTIVOS** : Mecanismo de inundacion con IP ORIGEN el que quiero inundar y destino otra maquina (Los firewalls de control de estado lo evitan)       
+  
+Siempre que se envian paquetes a una direccion de broadcast de otra red, el router de tu red droppea los paquetes  
+Si ``/proc/sys/net/ipv4/icmp_echo_ignore_broadcast`` ---> 1 : ignora los icmps con destino a direccion broadcast  
+   icmp_echo_ignore_all --> Si lo pongo a 1 : no responde al ping(droppea los paquetes)     
+   rp_filter
+#### INYECTORES DE PAQUETES 
+- Como hping3, scapg, packuk
+#### SYN FLOOD(Ataque) 
+- TCB ---> cola donde la maquina almacena info de todas las conexiones que tiene abiertas. Si se llena no se pueden gestionar mas conexiones.    
+/proc/sys/net/ipv4/tcp_max_loult_log : valor por defecto es 128 que el numero de conexiones que soporta  
+- TCP SYN COOKIES : ``/proc/sys/net/ipv4/tcp_syncookies``  
+Estos ataques se evitan con SYN PROXY y SYN CACHES 
+
+Con UDP los ataques por inundacion o denegacion de servicio son mas peligrosos que TCP
+    udpflord para defenderse 
+
+### TRAFFIC SHAPING y PACKET SHAPING 
+- Son Qos
+### REVERSE PROXYS 
+- Para evitar ataques de denegacion de servicio. La diferencia es que cuando una persona de internet quiere acceder a tu servidor web en vez de acceder por HTTP acceder a traves de proxy. Los PROXYS era para que una persona de la organizacion lo usara para conectarse a internet
+#### Diferencia con un proxy normal
+``MI SERVIDOR WEB ---> PROXY --> INTERNET``   
+``MI SERVIDOR WEB <--- REVERSE PROXY <-- INTERNET``
+### SISTEMAS DE FICHEROS
+#### SMTP 
+- MAIBOX --> pocos fichero de mucho tamaño
+- MAILDOR --> muchos ficheros de poco tamaño. Fichero por cada correo que tenga de cada usuario
+#### PRUEBAS DE CARGA
+- **jMETER** : Que es de apache
+- **APACHE BENCH**
+### MOD EVASIVE 
+- Esta en /etc/apache/ ¿creo?
+
+### Cosas de firewalls, creo 
+- **packet -b 0 -c 0 -sR -d 10.11.48.10 -F S -S 2000 -D 20**
+- **sR** : hago ip spoofing 
+Si tu organizacion no tiene firewall de control de estado la .10 enviara un SYN ACK a internet 
+Si si lo tiene el SYN ACK se descartara en el firewall
+Tambien para dejar salir EL SYN ACK se puede elgir otro puerto (en vez de el 2000)
+- **hping3 -3 -p 80 -flord --send-service X.X.X.X** : Inundacion 
+### SNDP
+- **Newtwork discovery protocol**(lo usado para tirar las maquinas abajo)
+- **fake_router6** ---> envia RA a la dirrecion multicast de varias maquinas(creando asi enlaces locales). Asi las tiro abajo.    
+Para defenderme:
+1) Desactivo **IPv6**    
+2) En ``/proc/sys/net/ipv6`` modificar unos ficheros donde hay variables: accept_ra = 0(no acepta los RA)      
+
+LOS IFRAME SE BLOQUEAN, POR QUE SE USAN PARA ATACAR INFRAESTRUCTURAS    
+```
+ <META HTTP-EQUIP= "Refresh" CONTENT= "3">  
+  <iframe sre="http://IP WIDTH= "0" HEIGHT= "0">  
+  </iframe>    
+```
+HACKER CHOICE -->  G   
+### Cosas de redes WIFI
+#### ATAQUES A LAS REDES WI-FI
+- airmon -ng start vlan0
+- airondump -ng vlan10  
+**BSSID** : MAC del punto de acceso  
+- airplay -ng -0 0 -a x.x.x.x  
+Nadie se puede engancahr a mi WIFI  
+- airplay -ng -0 -0 -a -c  
+- Estandard 802.11w : Hace que el priner airplay no funcione  
+#### IPS, HIPS
+#### WIPS 
+- Sistemas de prevencion de inclusiones en sistemas WI-FI   
+**Ejemplos** : CISCO ADAPTIVE WIRELES IPS, OPEN WIPS -ng       
+#### ACRYLIC 
+- Herramienta Gallega. ¿ Sirve para monitorizar el RSSI de los puntos de acceso de la red WI-FI ?  
+**RSSI** : De -60 es bueno, de -70 para abajo pierdes potencia(las maquinas se vienen abajo)                       
+#### WIFI 
+- Espectros de 2,4 Ghz : Trabaja desde [2192 Ghz - 2471 MHz]. Empieza en el punto de acceso 1.  
+Poner puntos de acceso que no se solapen (1 6 11).  
+- Banda de 5Ghz : Trabaja desde [5180 Ghz - 5825 Mhz].Empieza en el punto de acceso 36 ya que ahi hay una frecuencia de 5180 Ghz.                                  
+#### 802.11  
+- a : [5Ghz] [54Mbps] (ancho de banda)  
+- b : [2,4Ghz] [11Mbps]  
+- g : [2,4Ghz] [54Mbps]   
+- ac : [5Ghz]  [11Gbps]  
+- ax : [2,4Ghz - 5Ghz] [Muchos Gbps]  
+#### OWISAMP  
+- Metodologia para analizar las arquitecturas WI-FI (Apartado por apartado)  
+#### wifi hammer 
+- Herramienta que te hace un barrido completo de las WIFIS y te las autentifica (dejando a todo el mundo sin conectividad)  
+#### Evitar ATAQUES DOS
+##### CLUSTERING 
+Usamos clustering para tirar una lista Blanca (mirar las personas legales que pueden ser culpales) 
+- TAPs : Se coloca en medio del trafico y hace un mirroring de ese trafico y asi poder analizarlo
+##### RTBL 
+Le mando unas IPS y esta web las envia a BD para verificar la reputacion de la IP.  
+Esto se puede utilizar en un firewall para hacer que el trafico que no tenga un nivel de reputacion se droppea   
+##### SPAMHAUS 
+- SBL : SPAMHAUS BLACK LIST  
+Siempre al enviar un correo electronico se comprueba si el servidor de correo electronico pertenece a esta lista  
+## Tema 1.7: FIREWALLING 
+### ACLARACION
+iptables -A INPUT -p tcp --deport -m hashlimit --hashlimit-upt  50/min  
+iptables -A INPUT -p tcp --deport 22 -m hashlimit -hashlimit  1/min --hash limit-mode srap ---> --contract --cstate NEW -g ACCEPT : Para ataques de PASSWORD GUESSING  
+### Lo Basico
+- **Usamos iptables** : trabaja a nivel de kernel
+- **ip6tables** : reglas de filtrado a nivel ipv6
+- **ethtables** : reglas a nivel capa 2   
+- **arptables** : a nivel de arp
+- **ipset** : Se utiliza para configurar, mantener e inspeccionar los llamados conjuntos de IP en el kernel de Linux.
+#### Reglas 
+- INPUT : todo lo que entra
+- OUTPUT : todo lo que sale 
+- FORWARD : la IP destino no es mi maquina (firewall de red)
+Las tipicas que usaremos son IPUT/OUTPUT  
+- NAT : para hacer NATING
+- MANGLE : modificar parametros a nivel de paqueteria
+#### CADENA 
+- Conjuntos/agrupaciones de reglas
+- Cadena PRESOUTING, conectada a la interfaz de mi maquina
+- Si no va a mi maquina:   
+``Mi interfaz de red ---> Prerouting ---> Forward ---> Postrouting ---> Mi interfaz``         
+- Si va a mi maquina:      
+``Mi interfaz de red ---> Prerouting ---> INPUT ---> PROCESO``  
+- Diagrama para aclarar                 
+```mermaid
+classDiagram
+    class MiInterfaz {
+      + nada
+    }
+    class Prerouting {
+      + nada
+    }
+    class Postrouting {
+      + nada
+    }
+    class Forward {
+      + nada
+    }
+    class INPUT {
+      + nada
+    }
+    class OUTPUT {
+      + nada
+    }
+    class PROCESO {
+      + nada
+    }
+MiInterfaz --> Prerouting
+Prerouting --> Forward
+Forward --> Postrouting
+Postrouting --> MiInterfaz
+MiInterfaz --> Prerouting
+Prerouting --> INPUT
+INPUT --> PROCESO
+PROCESO --> OUTPUT
+OUTPUT --> POSTROUTING
+POSTROUTING --> MiInterfaz
+```
+#### TABLA :
+- NAT (Prerouting, output postrouting)
+- MANGLE (PRE, INPUT,FORW,OUTPUT,POST)
+- FILTER (INPUT,FORWARD,OUTPUT) 
+- En la practica lo que es importante es FIlter input y FIlter Output      
+- Comandos :
+```bash
+iptables -t [tabla] comando cadena conficion accion [OPCIONES] 
+iptables -t FILTER -A INPUT -p TCP --dport 123 -j DROP  ## A mi maquina no acceden ningun paquete por el puerto 123  
+iptables -t FILTER -A INPUT -p TCP --dport 123 -j REJECT  ## Mi maquina tira los paquetes y se comporta como cualquier maquina avisando     
+iptables -t FILTER -A INPUT -p TCP --dport 123 -j ACCEPT
+```
+- ``/bin/sh`` --> script
+```bash
+### Poner el path siempre : /sbin/iptables
+iptables -F                              ## deja el firewall sin reglas
+iptables -X                              ## lo deja sin cadenas
+iptables -Z                              ## restablece los contadores de paquetes y bytes asociados de todas las reglas
+### POR DEFECTO (HAY QUE PONERLO) 
+iptables -p INPUT DROP
+iptables -p OUTPUT DROP
+iptables -p FORWARD DROP  
+iptables -A INPUT -i lo -j ACCEPT  //Esta el la regla 0 en el FILTER
+iptables -A OUTPUT -o lo -j ACCEPT 
+iptables -A INPUT -s 10.11.48.CLIENTE -d 10.11.48.MIA -p TCP --dport 514 -j ACCEPT               ## Solo acepta recibir logs de tu compa. Esta es la regla 1 en el FILTER
+iptables -A INPUT -s 10.11.48.CLIENTE -d 10.11.48.MIA -p UDP --dport 122 -j ACCEPT  
+iptables -A OUTPUT -s 10.11.48.MIA -d 10.11.48.CLIENTE -p TCP --sport 514 -j ACCEPT              ## Ponemos sourceport ya que no conocemos el puerto de origen del servidor      
+iptables -A OUTPUT -s 10.11.48.MIA -d 10.11.48.CLIENTE -p UDP --sport 122 -j ACCEPT   
+```
+- INPUT : con ssh el puerto destino es el 22 y la ip destino es eduroam/MASCARA
+- OUTPUT : con ssh el puerto origen es 22 ip destino la mia
+- DNS puerto 53
+- NO se puede navegar web en la maquina  
+- Para poder dejar que las maquinas de puedan actualizar ---> HTTP
+- Con ipv6 poner tu IP y la de tu compañero
+- Este firewall si CONTROL DE ESTADO 
+
+#### ESTADO DE LAS CONEXIONES 
+- NEW : cuando se hace el SYNC
+- ESTABLISHED : conexion establecida
+- RELATED : conexiones relacionadas 
+#### FIREWALL CON CONTROL DE ESTADO
+- ESTO ES ASI SI SOY SERVIDOR
+```bash
+iptables -A INPUT -P TCP 22 --dport 22 -s 10.10.30.0/24 -d 10.11.48.M -m conntractK --cstate NEW /ESTABLISEHD -j ACCEPT   
+  ``      -A OUPTUT  ```     --sport 22 `` `` ``````                                --cstate ESTABLISEHD, RELATED -J ACCEPT  --> Comprueba que se ha hecho   
+                                                                                                                                 un NEW para pasar al estado ESTABLISHED  
+```  ```   ``` -i ens33 ````` ``  -m multiport 22,80,443,514 ``   `  ``   ``   ````     
+```
+- SI PONEMOS AL PRINCIPIO: 
+```bash
+iptables -A INPUT -m conntrack --estate ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT ````````````
+Las siguientes lineas de INPUT que pongamos no hay que poner el ESTABLISHED 
+```
+- SI SOY CIENTE   
+**INPUT** : ESTABLISHED,RELATED  
+**OUTPUT** : NEW, ESTABLISHED   
+
+POR DEFECTO LOS PAQUETES SE DROPPEAN, PARA QUE NOS SE EJECUTEN LAS REGLAS POR DEFECTO   
+```
+iptables -A INPUT -p TCP -j REJECT --reject-multi  tcp-reset  
+                  -p UDP                           icp-port-unreachable  
+```
+#### FIREWALL PERSISTENTE(NO HACERLO)  
+ 1) En el archivo interfaces : post-up [script] o pre-up [script]  
+ 2) Como servicio : poner after networking.service  
+ 3)
+ ```
+ apt istall iptables-persistant  
+ iptables -presistents /dev/iptables/subo.v4   
+ systemctl `` iptables-persistent  
+   ```
+##### CON IPV6
+- ``ip6tables -A INPUT -P TCP --dport 22``  
+- ``ip6tables -A INPUT -s fe80:  --dport 22``     
+- ``iptables -A INPUT -p TCP --dport 80 -m string string "/etc/passwd" /j LOG --log-ip-option --log-tcp-options --log-prefix "acces passwd" ````` -j DROP``  
+Hacer cosas con cadenas dentro de los PAYLOADS(contenido) de los paquetes  
+- ``iptables -A INPUT -P TCP --dport 22 -j LOG --log-prefix "INTENTO NO IDENTIFICADO" --log-level 4``     
+  
+Si en el rsyslog.conf añadimos --> :asg_certains, "INTENTO NO IDENTIFICADO" [ruta donde guardo los intentos] : Asi registro los intentos de conexion   
+Si en iptables no se especifica la tabla por defecto va a FILTER  
+##### NETFILTER 
+IPTABLES y NFTABLES
+- IPTABLES : ``iptables -t filter -A FORWARD -s xxxx -d xxxx -p TCP -dport 514 -m conntrack --estate NEW -j ACCEPT``   
+- NFTABLES : ``nft add nup filter forward  ip sourceaddr/xxxx ip sourceaddr/xxxx  tcp sport 514 ct state NEW ACCEPT``    
+en ip podemos pasar la ip o la mac   
+en ip6 pasamos la ipv6      
+##### FWBUILDER 
+- Herramienta grafica para configurar un firewall
+
+
 
