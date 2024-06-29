@@ -62,8 +62,8 @@ Aprovechan una vulnerabilidad para conseguir algo a cambio.
                    tipos: internos,externos,accidentales y no accidentales(son ataques)
 ### Virus 
 #### Tipos
-- **Troyano** : Códigos maliciosos que intentan mostrarse como algo útil o apetecible para que un usuario lo ejecute.  
-  Puerta trasera (codigo maligno que se hace pasar por un software venigno) es un programa que el atacante instala en un sistema para permitir el acceso.
+- **Troyano** : Códigos maliciosos que intentan mostrarse como algo útil o apetecible para que un usuario lo ejecute.   
+  Backdoors (codigo maligno que se hace pasar por un software venigno, troyano de puerta trasera) es un programa que el atacante instala en un sistema para permitir el acceso.
 - **Gusano** : Software que se expande. Wanacrey
 - **Dropper** : Virus + Gusano
 - **Propagacion**  : Gusano y Dropper
