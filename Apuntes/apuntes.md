@@ -18,9 +18,9 @@
 - **CVE(Common vulnerable exponse)** : Lista de todo tipo de vulnerabilidades de todo tipo de plataformas.
 - **NVD(National Vulnerable Database)** : Base de datos de vulnerabilidades.
 - **CVE(Common Vulnerabilities and Exposures)** : Lista de vulnerabilidades de ciberseguridad conocidas publicamente.
-- **CWE (Common Weakness Exposure)**
+- **CWE (Common Weakness Exposure)** : Tipologias de vulnerabilidades
 - **CVSS(Common Vulnerability Score System)** : Sistema de puntuacion para clasificar las vulnerabilidades.
-- **CPE(Common Platform Emmeration)**
+- **CPE(Common Platform Emmeration)** : Tipos de plataformas (Versiones de Debian, para clasificar plataformas)
 - **OVAL OPEN (Vulnerability and assessment language)** : Aparece ya que **CVE**, 
   **CWE**, **CVSS** tenian problemas a la hora de establecer los campos.  
 - **NDP** : Protocolo equivalente a ARP pero en IPv6.  
