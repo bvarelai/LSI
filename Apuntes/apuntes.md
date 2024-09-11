@@ -29,7 +29,8 @@
 ## Tema 1: Fundamentos y Categorias de ataques
 ### Vulnerabilidad
 Las hay de Software y Hardware. Se les reconoce por una sigla llamada **CVE** y **CVSS**.  
-Ejemplo : CVE-2013-3527
+Ejemplo : CVE-2013-3527  
+Para atacarlas se utilizan los **exploits** (te dicen como atacarlas, cosa que el **CVE** y **CVSS** no te dice)  
 #### Tipos
 - **Zero-Day** : Vulnerabilidad encontrada no parcheada, que puede ser utilizada para un posible ataque.  
   Se le asigna un **CWE** y **CVE**.Los hay sin **CWE** y **CVE** por que no interesa en algunos casos.
