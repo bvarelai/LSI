@@ -16,7 +16,7 @@
 - **DHCP** : configurar las maquinas de manera dinamica(asigna las IP a cada maquina de una intranet).
 - **CVE(Common vulnerable exponse)** : Lista de todo tipo de vulnerabilidades de todo tipo de plataformas.
 - **NVD(National Vulnerable Database)** : Base de datos de vulnerabilidades.
-- **CVE(Common Vulnerability Exposure)** : Lista de vulnerabilidades de ciberseguridad conocidas publicamente.
+- **CVE(Common Vulnerabilities and Exposures)** : Lista de vulnerabilidades de ciberseguridad conocidas publicamente.
 - **CWE (Common Weakness Exposure)**
 - **CVSS(Common Vulnerability Score System)** : Sistema de puntuacion para clasificar las vulnerabilidades.
 - **CPE(Common Platform Emmeration)**
