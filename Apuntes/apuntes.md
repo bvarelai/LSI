@@ -11,7 +11,8 @@
 - **VPN(Virtual Private Network)**: El trafico va cifrado y autenticado desde mi pc hasta la máquina(a traves del servidor de UDC).
 - **Intranet** : Red donde estan las BD.
 - **SMTP** : Protocolo de correo electronico.
-- **GNS3** : Simulador de redes (no emula). 
+- **GNS3** : Simulador de redes (no emula).
+- **PacketTracer** : Emulador de Red (Creo ??)
 - **NAT(Network Adress Translate)**: Tus dispositivos estan en una intranet(red privada).
 - **DHCP** : configurar las maquinas de manera dinamica(asigna las IP a cada maquina de una intranet).
 - **CVE(Common vulnerable exponse)** : Lista de todo tipo de vulnerabilidades de todo tipo de plataformas.
