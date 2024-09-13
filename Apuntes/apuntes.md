@@ -62,6 +62,7 @@ Aprovechan una vulnerabilidad para conseguir algo a cambio.
  - **Inyection Web** : Permite recuperar cookies 
  - **Incidente** : Evento que produce un fallo de servicio(lo que paso el lunes) 
                    tipos: internos,externos,accidentales y no accidentales(son ataques)
+ - **BotNet** : Ataques que se hacen por inundacion
 ### Virus 
 #### Tipos
 - **Troyano** : Códigos maliciosos que intentan mostrarse como algo útil o apetecible para que un usuario lo ejecute.   
