@@ -105,8 +105,9 @@ Que un servicio deje de funcionar o funcione mal
 - **Dos** : Ataque de sistema sobre sistema. Siempre por inundacion
 - **[D]Dos** : Varios Sistemas atacan a un solo sistema. Ejemplo : BotNet
 - **Ataque de Negacion de servicio de tipo logico** : Se resulve con un parche, ya que usan las vulnerabilidades para atacar
-- **Ataque de Negacion de servicio por Inundacion** : Mas dificil de proteger.  
-  Ejemplos : **Traffic Shapinc**(forma de gestionar la calidad del servicio) y **QoS**(buscar la calidad)  
+- **Ataque de Negacion de servicio por Inundacion** : Mas dificil de proteger, ya que hay que saber el tipo de trafico que es dañino y el que no.
+Una solucion es hacer gestion de ancho de banda de las maquinas.  
+Ejemplos : **Traffic Shapinc**(forma de gestionar la calidad del servicio) y **QoS**(buscar la calidad)  
 #### Detección
 Importante para evitar problemas
 ##### Tipos
