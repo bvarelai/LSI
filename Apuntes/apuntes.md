@@ -23,7 +23,9 @@
 - **CPE(Common Platform Emmeration)** : Tipos de plataformas (Versiones de Debian, para clasificar plataformas)
 - **OVAL OPEN (Vulnerability and assessment language)** : Aparece ya que **CVE**, 
   **CWE**, **CVSS** tenian problemas a la hora de establecer los campos.  
-- **NDP** : Protocolo equivalente a ARP pero en IPv6.  
+- **NDP** : Protocolo equivalente a ARP pero en IPv6.
+- **Maltego** : Herramiento para la ingenieria social.
+- **Netglub** : Igual que Maltego
 ### Orden para cifrar un PDF
 - **PDF** -> **HASH** -> **Huella** -> **Cifrar** -> **Huella digital**
 ## Tema 1: Fundamentos y Categorias de ataques
@@ -104,10 +106,11 @@ Que un servicio deje de funcionar o funcione mal
 ##### Tipos
 - **Dos** : Ataque de sistema sobre sistema. Siempre por inundacion
 - **[D]Dos** : Varios Sistemas atacan a un solo sistema. Ejemplo : BotNet
-- **Ataque de Negacion de servicio de tipo logico** : Se resulve con un parche, ya que usan las vulnerabilidades para atacar
+- **Ataque de Negacion de servicio de tipo logico** : Se resulve con un parche, ya que usan las vulnerabilidades para atacar  
 - **Ataque de Negacion de servicio por Inundacion** : Mas dificil de proteger, ya que hay que saber el tipo de trafico que es dañino y el que no.
-Una solucion es hacer gestion de ancho de banda de las maquinas.  
-Ejemplos : **Traffic Shapinc**(forma de gestionar la calidad del servicio) y **QoS**(buscar la calidad)  
+Una solucion es hacer gestion de ancho de banda de las maquinas (esto se hace con **iptables -hashlimit**)  
+Ejemplos : **Traffic Shapinc**(forma de gestionar la calidad del servicio) y **QoS**(buscar la calidad)
+- Tambien pueden ser **accidentales** o **a propósito**
 #### Detección
 Importante para evitar problemas
 ##### Tipos
@@ -123,6 +126,7 @@ Importante para evitar problemas
   Ejemplo : Ataques
 - **Sistemas de deteccion basados en Host** : Analiza la informacion del logs de los hosts
 - **Fallos de los Sistemas Operativos y las Aplicaciones**
+- ERTMS : Sistemas de gestion de lineas de ferrocarril (INFO A MAYORES)
 #### Modificación
 - Ataque contra la **integridad** (Funcion hash)  
   Ej: Modificar una **BD** (mediante ataques sql), modificacion de programas(crackers), malware,  
