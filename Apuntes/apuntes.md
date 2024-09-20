@@ -111,6 +111,9 @@ Que un servicio deje de funcionar o funcione mal
 Una solucion es hacer gestion de ancho de banda de las maquinas (esto se hace con **iptables -hashlimit**)  
 Ejemplos : **Traffic Shapinc**(forma de gestionar la calidad del servicio) y **QoS**(buscar la calidad)
 - Tambien pueden ser **accidentales** o **a propósito**
+#### Intercepcion
+- Ataque contra la integridad, ya que se busca obtener informacion pero no modificar nada
+- Pirateo de Software, sniffing de datos (sin modificacion)
 #### Detección
 Importante para evitar problemas
 ##### Tipos
@@ -128,16 +131,17 @@ Importante para evitar problemas
 - **Fallos de los Sistemas Operativos y las Aplicaciones**
 - ERTMS : Sistemas de gestion de lineas de ferrocarril (INFO A MAYORES)
 #### Modificación
-- Ataque contra la **integridad** (Funcion hash)  
+- Ataque contra la **integridad** (Funcion hash para evitar estos ataques)  
   Ej: Modificar una **BD** (mediante ataques sql), modificacion de programas(crackers), malware,  
-  troyanos, modificar elementos hardware, modificar sesiones, desbordamiento de pila...
+  troyanos, modificar elementos hardware, modificar sesiones, desbordamiento de pila, hacer MITM, desbordamientos de pila...
 #### Spoofing
 - Suplantar cosas : **IP4** direcciones(32 bits) **IP6**(direcciones de 128 bits) **MAC**(direcciones de 48 bits)  
   Para hacer spoofing con correo (netstat [ip] [puerto]).  
   Ejemplos: **SMSFake**(de pago), **SPoofcar**(llamadas telefonicas), **FakeNameGenerator**      
 #### Generación/Fabricación
-- Ataque contra **Auntenticidad**  
-   Ej: Intentar falsear cache, infecciones de malware, DNS Spoofing , HPING3, SCAPY, packit...
+- Ataque contra **Auntenticidad**    
+Ej: Intentar falsear cache, infecciones de malware, DNS Spoofing contra caches , HPING3, SCAPY, packit, añadir transacciones falsas a internet...  
+Herramientas para inyectar paquetes : hping3, scapy, packit  
 #### Amenazas
 - Mirar el **PDF de Adrian**
 #### Mas cosas
@@ -219,11 +223,12 @@ Hay casos donde recibes reset y puede ser que lo envie el firewall, por lo que s
 ### FootPrinting 
 - Recolectar info de paginas web, redes sociales(info publica)
 ### Google Hacking/Dorks 
-- Uso de toda la semantica para la ayuda de buscar info y asi acceder a infraextructuras
+- Uso de toda la semantica y expresiones para la busqueda de info y asi acceder a infraextructuras
 ### Fuentes Publicas 
 - **JMALTEGO**(CREAS ENTIDADES QUE SON COSAS QUE DESCUBRES(IP,MAQUINAS,PERSONAS),**NETGLUB**
 ### Osint
-- **Open Source Intelligent** (Coger info, procesarla y usarla)
+- **Open Source Intelligent** (Sirve para coger info publica, procesarla y usarla)
+- Open Osint Framework.com : Herramientas OSINT online 
 ### Net Rangos
 - PUBLICA  
   **NIC(NETWORK INFORMATION CENTER)** es --> udc (NO HAY INTRANET)  
