@@ -232,6 +232,8 @@ Hay casos donde recibes reset y puede ser que lo envie el firewall, por lo que s
 ### Net Rangos (Rangos de red)
 - PUBLICA (son publicos)  
   **NIC(NETWORK INFORMATION CENTER)** es --> udc (NO HAY INTRANET)  
+  El NIC sirve para conocer el direccionamiento publico de organizaciones  
+  El direccionamiento de una IntraNet no es publico  
   **RIPE(REDES IPS EUROPEAS)**  
   **NCC(CENTRO EUROPEO)** 
 ### Payloads
