@@ -229,8 +229,8 @@ Hay casos donde recibes reset y puede ser que lo envie el firewall, por lo que s
 ### Osint
 - **Open Source Intelligent** (Sirve para coger info publica, procesarla y usarla)
 - Open Osint Framework.com : Herramientas OSINT online 
-### Net Rangos
-- PUBLICA  
+### Net Rangos (Rangos de red)
+- PUBLICA (son publicos)  
   **NIC(NETWORK INFORMATION CENTER)** es --> udc (NO HAY INTRANET)  
   **RIPE(REDES IPS EUROPEAS)**  
   **NCC(CENTRO EUROPEO)** 
