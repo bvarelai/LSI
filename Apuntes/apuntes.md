@@ -213,7 +213,8 @@ Hay casos donde recibes reset y puede ser que lo envie el firewall, por lo que s
 - **traceroute -T -U [IP]** : Paquete sync por TCP (llega seguro al servidor web)
 ### Fingerprinting
 - Técnicas para determinar que SO y version tiene la maquina. Este se aplica al **PORT SCANNING** ya que al saber un puerto que esta    
-  levantado puedo saber lo que esta corriendo ahi y asi descubrir vulnerabilidades.  
+  levantado puedo saber lo que esta corriendo ahi y asi descubrir vulnerabilidades.
+  Los hay de SO y de servicios
   Hacer **port scanning** --> **fingerprinting** activo    
   buscar info ---> **fingerprinting** pasivo
 #### Comandos
