@@ -1,5 +1,7 @@
 # Temario LSI (2023-2024)
 ## Siglas
+- **yescript** : funcion hash que se aplica sobre las contraseñas (que estan en el passwd) de los usuarios
+- **rounds:200.000** : es para que al generar las passwd se les aplique un hash 200.000 veces.
 - **MD5/SHA/SHA3** : Es una funcion hash que puedes aplicarla sobre algo(un PDF) y te devuelve una huella digital(cadena) que es el resumen.
                      No es un algoritmo criptográfico
 - **AES/chacha** : Algoritmos criptograficos que cifran la informacion para evitar que te la roben.
@@ -227,6 +229,8 @@ Hay casos donde recibes reset y puede ser que lo envie el firewall, por lo que s
 - Uso de toda la semantica y expresiones para la busqueda de info y asi acceder a infraextructuras
 ### Fuentes Publicas 
 - **JMALTEGO**(CREAS ENTIDADES QUE SON COSAS QUE DESCUBRES(IP,MAQUINAS,PERSONAS),**NETGLUB**
+### Herramienta de information gathering
+- CREPPY, FOCA, METAGOOF 
 ### Osint
 - **Open Source Intelligent** (Sirve para coger info publica, procesarla y usarla)
 - Open Osint Framework.com : Herramientas OSINT online 
@@ -308,21 +312,24 @@ Ejemplo : **modsecurity**, **cloudfare**,**infogure**
 #### Como saltarse un Firewall (con control de estado y sin el)
 - **#ssh X.X.X.Casa -p 443 -l user -L 2128:X.X.X.JUEGO:Puerto** : **CASA** es un servidor ssh con su fichero de configuracion(/etc/sshd.conf poner port: 443)   
 El primer 2128 es el puerto de mi maquina con el que hago LOCALHOST y el segundo es el puerto de JUEGO. JUEGO es la maquina a la que quiero acceder.   
-Si hacemos un http//:LOCALHOST:3128 Para ir desde mi maquina CASA voy desde un puerto al 443   
+Si hacemos un `http//:LOCALHOST:3128` Para ir desde mi maquina CASA voy desde un puerto al 443   
 ### Más cosas a mayores
 - **Information gallery** : MALTEGO, NETGLUB
 - **Metadatos** : CREEPY(recolecta fotos y geolocaliza el lugar donde se han hecho a traves de metadatos)
 - **SPIDER** : engancharse a servidores web de internet(donde hay un idex.html). Recorre el arbol web empezando por el index.html de servidor en servidor. 
-- **CRAWLER** : Lo mismo que el spidering pero ademas busca la vulnerablidades/y hace un analisis sintactico) de los servidores
+- **CRAWLER** : Lo mismo que el spidering pero ademas busca la vulnerablidades (y hace un analisis sintactico) de los servidores  
+Los buscadores son crawler  
 - **SCRAPPER** : Coger informacion de varios sitios para comparar "precios"/cosas.
+No recorren todo el arbol (creo) sino cosas especificas   
 - **HARDENING** : endurecer nuestro sistema para mejorar la seguridad 
-               Herramienta: lynis audit system (te da consejos para mejorar la seguridad de tu maquina)    
-               Libreria: lilpum-tmpdir    
-- **atp-listbugs** : Permite ver los bugs de los paquetes   
-- **apt install needstart** : Se usa cuando hay cambios de librerias
-- **debsecan** : te da las vulnerabilidades no parcheadas de tu maquina    
-- **debsums -d** : Te dice las diferencias de cada paquete instalado  
-- **fail2ban** : ataques password-guessing los evita.   
+               Herramienta: `lynis audit system` (te da consejos para mejorar la seguridad de tu maquina)    
+               Libreria: libpam-tmpdir. /etc/security/limits.conf (limitar ciertos valores del sistema)   
+               - **atp-listbugs** : Permite ver los bugs de los paquetes   
+               - **apt install needstart** : Se usa cuando hay cambios de librerias
+               - debsecan --state bookworn --format-detail
+               - **debsecan** : te da las vulnerabilidades no parcheadas de tu maquina    
+               - **debsums -d** : Te dice las diferencias de cada paquete instalado  
+               - **fail2ban** : ataques password-guessing los evita.   
 - **systemd-analize security apache2.service** : Analisis del nivel de seguridad (las directivas que aparecen en el .service)   
 - Protect.system:full   
 - **sandbox** : Entorno acotado(donde se corre un servicio con sus librerias, de manera que si acceden a ese servicio no afecta al resto de servicios). Write-only patch    
