@@ -368,38 +368,48 @@ La clave es cambiar la **MAC** ya que cambiar la **IP** no es tan seguro si tien
 REMOTE_ADDR : IP(X) IP(X) IP : solo se vera la ip del ultimo proxy   
 X_FORWARDED_FORI : IP,IP
 #### TIPOS
-- **PROXYS HTTP**
-- **PROXYS SOCK**
-- **PROXYS TRANSPARENTE** : No da ocultacion ni privacidad (HTTP FORWARDING FOR)
-- **PROXYS ANONIMMOS**  
-- **PROXYS ANONIMICIDAD**  
+Según en protocolo:
+- **PROXYS HTTP** : Hago peticiones HTTP
+- **PROXYS SOCK** : 
+Segun el anonimato que nos dan:
+- **PROXYS TRANSPARENTE** : No da ocultacion ni privacidad, ya que no ocultan las cabeceras (HTTP FORWARDING FOR)
+- **PROXYS ANONIMMOS**  : NO utilizan el X_FORWARDED_FOR (dan anomicidad)
+- **PROXYS ANONIMICIDAD** : Ni identifican que estan llegando a otro Proxy 
 - **PROXYS RUIDOSOS** : En las cabeceras meten ruido(direcciones falsas)
 ##### PROXY HTTP
+En el `/etc/environ` puedo configurar variables como: 
 - **export http_proxy=http://x.x.x.x:3128**  : hago de proxy de las peticiones http
+- **export https_proxy=https://x.x.x.x:3128**  : hago de proxy de las peticiones http
 - **export ftp_proxy=ftp://x.x.x.x:3128**  : hago proxy de las peticiones ftp
 - **software para montar un proxy http** : squid
 - **/etc/profile** : proxy HTTP      
 - **$''/profile** : proxy HTTP
 ##### PROXY SOCK
-- etc/socks.conf
+En el fichero `etc/socks.conf` ponemos lo siguiente para indicarle al proxy como redireccionar las conexiones   
+que le llegan
 - direct 127.0.0.1 255.255.255.255
 - direct 10.11.48.0 255.255.254.0 
-- sockd @:x.x.x.x  0.0.0.0  0.0.0.0 
+- sockd @:x.x.x.x  0.0.0.0  0.0.0.0
+### REDES AJENAS
+- WIFIs
+
 ## Tema 1.4:  Sniffing y más
 ### AIRMON
-- **airmon -ng** : Tarjeta WI-FI "modo monitor" -- esnifas todo el trafico en el aire(que es el medio del WI-FI)   
+- **airmon -ng** : Tarjeta WI-FI "modo monitor" --> esnifas todo el trafico en el aire(que es el medio del WI-FI)   
 - **airondump -ng** : Captura trafico  
 - **aireplay -ng** : Enviar paquetes de auntentucacion(a una maquina) y quitarte la autenticacion de la wifi  
 - **aircrack -ng** : Crackeador de HANDSHAKES (WPA2)  
-- **airmon -ng start wlan0** : Modo monitor la tarjeta wlan0  
+- **airmon -ng start wlan0** : Modo monitor la tarjeta wlan0 (tarjeta de red).   
 - **airondump -ng mon0** : El mon0 es el lugar donde capturo trafico de la wlan0.  
   Muestra: BSSID (mac del pubto de acceso) , ESSID (nombre de la wifi, maquinas conectadas a ese punto de acceso)  
-- **airondumo -ng --CANAL -bssid [punto de acceso] -w captura mon0** : Pilla eñ trafico de y lo alamacena en el fichero "captura"  
-- **airplay -ng -0 1 -a XXXXX -c xxxxx mon0** : Asi le le quito la auntenticacion  
+- **airondump -ng --channel nº -bssid [punto de acceso] -w  fichero.cap mon0** : Pilla eñ trafico de y lo alamacena en el fichero "captura"  
+- **airplay -ng -0 1 -a XXXXX(Punto de acceso) -c xxxxx mon0** : Asi le le quito la auntenticacion
+- airplay -w prosci dd fichero.cap
 - **aircrack -ng -w disc captura** : Le crackeo(me calcula PNK`s)  
 ### PROCESO DE CRACKEO CON WPA2 A UNA WIFI PTK: PNK ANNOUNCE SNOUNS MAC(PUNTO DE ACCCESO) MAC (DE LA ESTACION)
-El PNK de la clave de acceso(password)
-Si todo lo que metes del PTK coincide con ese NICK del password -> YA ESTARIA  
+El PMK de la clave de acceso(password)   
+Lo que se hace es buscar passwords diferentes en el PMK.   
+Si todo lo que metes del PTK coincide con ese NICK del password (el hash) -> YA ESTARIA  
 - **WPS** : Se usaba hace años. Estandard en el que habia un indentificador(QR) para conectarse mas facil a la WIFI  
 El identificador tenia 7 digitos decimales. Cuando se programo el WPS se hizo 10^4 + 10^3 en vez de 10^7,  
 Por lo que disminuyo el numero de convinaciones posibles(la gente robaba el WI-FI)  
