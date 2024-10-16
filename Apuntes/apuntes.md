@@ -447,16 +447,19 @@ Por lo que disminuyo el numero de convinaciones posibles(la gente robaba el WI-F
 -  **medusa -M ssh -q** : las opciones para ssh
 -  **medusa -h 10.11.48.X -u lsi -P p.txt -M ssh -f -U fichero.txt**  
 #### Solución a este tipo de ataques
-- Denegar el **ssh** o filtrar a nivel de **Wrappers** y firewalls(puedo meter reglas hash-limit,para limitar los intentos).    
-**Fail2ban**, **OSSEC**(ES UN **HIPS**, detecta y evita ataques **PASSWORD GUESSING**), **HIPS(Host Intrusion Prevention System)**
+- Denegar el **ssh** (para evitar que te hagan este ataque desde root directamente) o filtrar a nivel de **Wrappers**  
+y firewalls(puedo meter reglas hash-limit,para limitar los intentos).    
+**Fail2ban**, **OSSEC**(Sistema de prevencion de intrusiones de host, ES UN **HIPS**, detecta y evita ataques **PASSWORD GUESSING**), **HIPS(Host Intrusion Prevention System)**
 - **CAPTACHAS** : Evitar ataques de PASSWORD GUESSING (Ej: selecciona los fotos donde sale un semaforo)
+##### Para descargar un apache mas bonito
 - **wget -v -k http://www...** : Usar spidering para descargar el index.html
 - **wget -v -k -H http://www...**: Usar spidering
+Con **-h** me hace spidering de se servidor y de servidores enlazados (con este tener cuidado de que se lleno el disco)  
 ### COMO PROTEGER EL GRUB
-- grub.mkpasswd-pbkdf2 : Esto te genera un hash(que esta dentro)  
+- grub-mkpasswd-pbkdf2 : Esto te genera un hash(que esta dentro)  
 - /etc/grubd/40_custom   
  set superuser=root  
- passwd-pbkdf2 root [hash]
+ passwd_pbkdf2 root [hash generado]
 - update-grub --> actualizar el grub   
 ### REBALLING 
 - Tema de graficas
