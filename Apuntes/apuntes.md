@@ -1,7 +1,7 @@
 # Temario LSI (2023-2024)
 ## Siglas
 - **yescript** : funcion hash que se aplica sobre las contraseñas (que estan en el passwd) de los usuarios
-- **rounds:200.000** : es para que al generar las passwd se les aplique un hash 200.000 veces.
+- **rounds:200.000** : es para que al generar las passwd se les aplique un hash 200.000 veces. Para crackear ese hash habria que deshashear 200.000 veces.
 - **MD5/SHA/SHA3** : Es una funcion hash que puedes aplicarla sobre algo(un PDF) y te devuelve una huella digital(cadena) que es el resumen.
                      No es un algoritmo criptográfico
 - **AES/chacha** : Algoritmos criptograficos que cifran la informacion para evitar que te la roben.
