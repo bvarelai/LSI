@@ -340,8 +340,8 @@ No recorren todo el arbol (creo) sino cosas especificas
 - **DEP**(**DATA EXECUTION PREVENTION** (otro nombre: no execute)): las zonas dedicadas a datos(la pila), el sistema las controla como de no ejecucion  
 - **/etc/pam.d/common-password** : Donde podemos modificar parametros. Si ponemos ramds=20000 en el fichero, la contraseña que ponemos al entrar se le aplicara la funcion hash 20000 veces.  
 Con esto se hace mas dificil crackear los passwords.  
-- **/etc/shadow** : se almacena el hash y el password de todos los usuarios. Cuando te autentifica la passord que poner se le aplica hash y si esa password  
-coincide con la que esta alamcenada en shadow te deja entrar. 
+- **/etc/shadow** : se almacena el hash y el password de todos los usuarios. Cuando te autentifica la password que pones se le aplica hash y si esa password  
+coincide con la que esta almacenada en shadow te deja entrar. 
 - **chage -lsi** : para ese usuario la fecha actual, cuando cambie la contraseña,etc...  
 - **passwd -e lsi** : hace que expire la contraseña de este usuario  
 #### Librerias que hacen como deben ser la passwords(tema caracteres, anchuras, que no repitas contraseñas) 
