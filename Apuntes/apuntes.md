@@ -427,21 +427,24 @@ Por lo que disminuyo el numero de convinaciones posibles(la gente robaba el WI-F
 
 - **SHA512** : funcion hash que devuelve una huella    
 - **CEWL** : genera un diccionario  a partir de los terminos de una web (usando spidering)   
-- **mutator**  
+- **mutator** : le pasas un diccionario y te genera uno nuevo, que te permite crackear passwords
 - **chunk**  
 - **thehandnoster**  
-- **hashat**
-- **Herramienta** : hash_identifice (le das un hash y te dice la funcion con la que fue hasheada) y el hash_id          
-- **findmyhash** : te busca en una BD si ese hash ha sido roto o no  
+- **hashat** : programa para crackear passwords.    
+`john -worldlest=diccionario   --rules   /fichero`
+     `-i:all`
+- **Herramienta** : hash_identifice (Si tienes un hash que quieres crackear, le das ese hash y te dice la funcion con la que fue hasheada) y el hash_id.          
+- **findmyhash** : te busca en una BD si ese hash ha sido roto o no.  
 ### PASSWORD GUESSING
 - Van contra los servicios imperativos de autenticacion(ssh). Son lentos, por lo que se dejan un tiempo ahi para pillar password.  
-  Dejan registros en los logs.
+  Dejan registros en los logs.   
+  Para evitar estos ataques se usan los CAPTCHA (lo de clickear los zonas donde ves un semáforo).   
 - **Filtros** : por **IP**, por usuario (Ataques de denegacion de servicio).  
-  Puedo poner el retardo (n-1) segundos.  
+  Puedo poner el retardo (n-1) segundos.   
 #### Comandos
--  **Medusa, n-crack, hydra**
+-  **Medusa, n-crack, th-hydra**
 -  **medusa -b** : todos los modulos que contempla medusa para atacar
--  **medusa -m ssh -q** : las opciones para ssh
+-  **medusa -M ssh -q** : las opciones para ssh
 -  **medusa -h 10.11.48.X -u lsi -P p.txt -M ssh -f -U fichero.txt**  
 #### Solución a este tipo de ataques
 - Denegar el **ssh** o filtrar a nivel de **Wrappers** y firewalls(puedo meter reglas hash-limit,para limitar los intentos).    
