@@ -313,6 +313,13 @@ Ejemplo : **modsecurity**, **cloudfare**,**infogure**
 - **#ssh X.X.X.Casa -p 443 -l user -L 2128:X.X.X.JUEGO:Puerto** : **CASA** es un servidor ssh con su fichero de configuracion(/etc/sshd.conf poner port: 443)   
 El primer 2128 es el puerto de mi maquina con el que hago LOCALHOST y el segundo es el puerto de JUEGO. JUEGO es la maquina a la que quiero acceder.   
 Si hacemos un `http//:LOCALHOST:3128` Para ir desde mi maquina CASA voy desde un puerto al 443   
+#### Ampliando la idea
+En la red mi maquina para solo puede acceder a internet a traves de router con el 443,80 y 22.
+creo un servidor ssh conectado a internet con un puerto (que nos sea ssh), ese servidor esta en mi casa.
+Desde mi maquina hago `ssh X.X.X.X.Casa -p 443 -l user -N -L 0.0.0.0:1328  X.X.X.OTRA:1328`
+La 0.0.0.0 se refiere a mi maquina. Lo que hago es conectarme a mi casa a traves de otra máquina desde la maquina de lsi
+De esta manera me salto el firewall
+
 ### Más cosas a mayores
 - **Information gallery** : MALTEGO, NETGLUB
 - **Metadatos** : CREEPY(recolecta fotos y geolocaliza el lugar donde se han hecho a traves de metadatos)
@@ -495,6 +502,9 @@ ya que ese nodo conoce mas informacion.
 - **Encadenar proxys** : **http://proxy.puerto/http://proxy2.puerto/http://**
   Descargar en tor proyect tor browser(mas seguro)
 - **FORWARDING DINAMICO** : **ssh -p 443 -fN -D 0.0.0:1080 user@X.X.X.CASA**
+- **outproxy** : redes a las que puede acceder cualquiera.
+- **inproxy** : redes a las que solo pueden acceder ciertas personas.
+- **BeEF** : especializada en atacar navegadores
 ### Herramienta corkscrew(junto con el forwardeo de puertos con ssh) 
 - Te permite saltarse proxys a nivel HTTP
 ### PORT KNOCKING 
