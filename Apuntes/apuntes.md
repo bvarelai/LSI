@@ -522,12 +522,15 @@ ya que ese nodo conoce mas informacion.
 Libro que trata sobre los ataques a capa 2. Los ataques a esta capa son devastadores  
 La capa 2 se tiene en cuenta menos que las capas 3->7.  
 ### SNIFFING 
-Puedo sniffar trafico seguro o no seguro(**FTP**,**HTTP**). Si es trafico **HTTPS** es trafico cifrado al hacer una **autenticacion BASIC** es mas seguro hacerlo por HTTPS 
-para proteger mi password. Tambien sirve para analizar redes.
+Puedo sniffar trafico seguro o no seguro(**FTP**,**HTTP**).Si es trafico **HTTPS** es trafico cifrado al hacer una **autenticacion BASIC** es mas seguro hacerlo por HTTPS.  
+para proteger mi password. Tambien sirve para analizar redes.  
+Metodo Basic : metodo de un autenticacion a una web que se configura por HTML.Este no es seguro ya que los password no van cifrados(si te sniffan trafico pueden saber tus passwords y datos). Por eso metemos el basic por https.  
 ### SUBNETTING
+Antiguamente las redes de cableado eran de medio compartido.   
 - **Rendimiento** : Usar Redes switcheadas
 - **Ahorro de IPs** : VLANs en donde los enlaces entre "los routers" son trunk ports ---> Protocolo 802.11Q o DTP
 - **YERSINIA** : permite hacer ataques en capa 2 (a los protocolos).Tambien ataca STP,DTP,802.1q      
+Para evitar ataques usando VLANs podemos hacer que nuestra maquina no acepte VLANs aunque tenga puertos trunk (¿?)
 ### REDES SWITCHEADAS 
 - Cada maquina tiene su ancho de banda propio. No son redes de ancho compartido(como eran las redes de antes, donde las maquinas compartian ancho de banda)
 ### SWITCH SPOOFING  
@@ -537,8 +540,8 @@ para proteger mi password. Tambien sirve para analizar redes.
 - Meter doble etiquetado a las maquinas. Cuando llega al commutador de una maquina se quita el primer etiquetado
 ### STP 
 -**Evita los bucles** : para que los switches se comuniquen se utilizan BPDU (donde se convierte la red en forma de grafo en un arbol sin bucles)
-Con **YERSINIA** puedes enviar un BPDU a la red para decir que tu eres el "bridge route". Esto es una manera de atacar
-- **ROOT BRIDGE GUARD** ---> puedo filtrar donde puedes aparecer o no apareceer los root bridges
+Con **YERSINIA** puedes enviar un BPDU a la red para decir que tu eres el "bridge route". Esto es una manera de atacar.  
+- **ROOT BRIDGE GUARD** ---> puedo filtrar donde puedes aparecer o no apareceer los root bridges (para que los mensajes STP entre maquinas no vayan a otras redes)  
 - **BPDU GUARD** --> filtrar los puertos por donde no debe hablar BPDUS
 - **yersinia - G** : modo grafico
 ### ARP SPOOFING 
@@ -548,7 +551,7 @@ Con **YERSINIA** puedes enviar un BPDU a la red para decir que tu eres el "bridg
 #### Comandos
 - **ettercap -M icmp:MAC /IP// /IP//**
 - **/proc/sys/net/ipv4/conf/all/accept_redirect** : Si esto esta a 1 es que acepto estos ICMP
-- **/send_redirect** : si esta a 1 es que puedo enivar **ICMP**     
+- **/send_redirect** : si esta a 1 es que puedo enviar **ICMP**     
 - **/service_redirect**    
  - **Mejor opcion** : Modificar el /etc/sysctl.conf (net.ipv4.conf.all.accept_redirect = 0) 
 ### DHCP SPOOFING  
