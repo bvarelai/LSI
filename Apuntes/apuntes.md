@@ -822,7 +822,8 @@ Postrouting --> MiInterfaz
 #### TABLA :
 - NAT (Prerouting, output postrouting)
 - MANGLE (PRE, INPUT,FORW,OUTPUT,POST)
-- FILTER (INPUT,FORWARD,OUTPUT) 
+- FILTER (INPUT,FORWARD,OUTPUT)
+    Nosotros vamos a trabajar sobre todo en INPUT FILTER y en OUTPUT FILTER
 - En la practica lo que es importante es FIlter input y FIlter Output      
 - Comandos :
 ```bash
@@ -830,6 +831,7 @@ iptables -t [tabla] comando cadena conficion accion [OPCIONES]
 iptables -t FILTER -A INPUT -p TCP --dport 123 -j DROP  ## A mi maquina no acceden ningun paquete por el puerto 123  
 iptables -t FILTER -A INPUT -p TCP --dport 123 -j REJECT  ## Mi maquina tira los paquetes y se comporta como cualquier maquina avisando     
 iptables -t FILTER -A INPUT -p TCP --dport 123 -j ACCEPT
+                                                  LOG     ### Loguear informacion de los paquetes (no especificas sin se acepta o no)
 ```
 - ``/bin/sh`` --> script
 ```bash
