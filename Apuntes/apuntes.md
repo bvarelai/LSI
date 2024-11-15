@@ -779,7 +779,8 @@ Las tipicas que usaremos son IPUT/OUTPUT
 - MANGLE : modificar parametros a nivel de paqueteria
 #### CADENA 
 - Conjuntos/agrupaciones de reglas
-- Cadena PRESOUTING, conectada a la interfaz de mi maquina
+- Estas son INPUT, OUTPUT, FORWARD, PREROUTING, POSTROUTING
+- Cadena PRESROUTING, conectada a la interfaz de mi maquina
 - Si no va a mi maquina:   
 ``Mi interfaz de red ---> Prerouting ---> Forward ---> Postrouting ---> Mi interfaz``         
 - Si va a mi maquina:      
