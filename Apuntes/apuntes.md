@@ -813,7 +813,6 @@ MiInterfaz --> Prerouting
 Prerouting --> Forward
 Forward --> Postrouting
 Postrouting --> MiInterfaz
-MiInterfaz --> Prerouting
 Prerouting --> INPUT
 INPUT --> PROCESO
 PROCESO --> OUTPUT
