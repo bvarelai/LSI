@@ -816,8 +816,8 @@ Postrouting --> MiInterfaz
 Prerouting --> INPUT
 INPUT --> PROCESO
 PROCESO --> OUTPUT
-OUTPUT --> POSTROUTING
-POSTROUTING --> MiInterfaz
+OUTPUT --> Postrouting
+Postrouting --> MiInterfaz
 ```
 #### TABLA :
 - NAT (Prerouting, output postrouting)
